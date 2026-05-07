@@ -32,10 +32,10 @@ These patterns map directly to a Medallion Lakehouse on GCP:
 
 BigQuery is serverless — there are no indexes, no vacuuming, no storage tuning knobs.
 All performance optimisation happens through:
-1. **Partitioning** — limits bytes scanned per query
-2. **Clustering** — sorts data within partitions for faster filtering
-3. **Incremental processing** — avoids full table scans on every run
-4. **MERGE statements** — atomic upserts without delete+insert races
+1. Partitioning — limits bytes scanned per query
+2. Clustering — sorts data within partitions for faster filtering
+3. Incremental processing — avoids full table scans on every run
+4. MERGE statements — atomic upserts without delete+insert races
 
 ## Author
 
