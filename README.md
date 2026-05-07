@@ -21,3 +21,24 @@ checks, and query optimisation — all with detailed explanations.
 These patterns map directly to a Medallion Lakehouse on GCP:
 
 ```
+
+[Bronze]  Raw partitioned tables      → partitioning_strategies.sql
+[Silver]  Cleaned + SCD2 dimensions   → scd_type2_bigquery.sql
+[Silver]  Incremental fact loads      → incremental_elt_pattern.sql
+[Gold]    Aggregated serving tables   → clustering_optimisation.sql
+[All]     Quality gates between layers → data_quality_checks.sql
+
+## Why BigQuery-specific patterns matter
+
+BigQuery is serverless — there are no indexes, no vacuuming, no storage tuning knobs.
+All performance optimisation happens through:
+1. **Partitioning** — limits bytes scanned per query
+2. **Clustering** — sorts data within partitions for faster filtering
+3. **Incremental processing** — avoids full table scans on every run
+4. **MERGE statements** — atomic upserts without delete+insert races
+
+## Author
+
+Shaloo Merin Mathew — Senior Data Engineer  
+[LinkedIn](https://www.linkedin.com/in/shaloo-mathew-b50878b8/) · 
+[GitHub](https://github.com/shaloommathew-sys)
